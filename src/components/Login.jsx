@@ -6,14 +6,10 @@ const Login = (props)=>{
         <div>
             <h2>Войти</h2>
             <form >
-                <label htmlFor="">
-                    Email
-                    <input type="text" placeholder="mail@mail.ru" name="" id="" />
-                </label>
-                <label htmlFor="">
-                    Пароль
-                    <input type="password" placeholder="*************"/>
-                </label>
+                <label htmlFor="email">Email</label>
+                <input type="email" placeholder="mail@mail.ru" name="email" id="email" />
+                <label htmlFor="password">Пароль</label>                 
+                <input type="password" placeholder="*************" name="password" id="password"/>
                 <button onClick={()=>{openPage('map')}} type="submit">Войти</button>
                 <div>
                     Новый пользователь?

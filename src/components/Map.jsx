@@ -9,7 +9,6 @@ const Map = (props)=>{
             <h2>Карта</h2>
         </div>
     )
-
 }
 
 export default Map;

@@ -24,9 +24,7 @@ const Header = (props)=>{
                 </nav>
             </header>
         </div>
-        
     )
-
 }
 
 export default Header;

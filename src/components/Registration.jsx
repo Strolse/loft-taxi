@@ -8,18 +8,12 @@ const Registration = (props)=>{
             <Header openPage={openPage}/>
             <h2>Регистрация</h2>
             <form>
-                <label htmlFor="">
-                    Email*
-                    <input type="email" placeholder="mail@mail.ru" name="" id="" />
-                </label>
-                <label htmlFor="">
-                    Как вас зовут?*
-                    <input type="text" placeholder="Петр Александрович" name="" id="" />
-                </label>
-                <label htmlFor="">
-                    Пароль
-                    <input type="password" placeholder="Придумайте пароль*"/>
-                </label>
+                <label htmlFor="email">Email*</label>
+                <input type="email" placeholder="mail@mail.ru" name="email" id="email" />
+                <label htmlFor="name">Как вас зовут?*</label>
+                <input type="text" placeholder="Петр Александрович" name="name" id="name" />
+                <label htmlFor="password">Пароль</label>
+                <input type="password" placeholder="Придумайте пароль*" name="password" id="password"/>
                 <button type="submit" onClick={()=>{openPage('map')}}>Зарегистрироваться</button>
                 <div>
                     Уже зарегистрирован?
