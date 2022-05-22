@@ -20,10 +20,8 @@ const Map = ()=>{
 
 
     return (
-        <div>
             <div className="map" ref={mapContainerRef}>
             </div>
-        </div>
     )
 }
 
