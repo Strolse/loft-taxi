@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Header from "./Header";
+import Map from "./Map";
 
-const Profile = ({openPage})=>{
+
+const MapPage = ({openPage})=>{
     return (
         <div>
             <Header openPage={openPage}/>
-            <h2>Профиль</h2>
+            <Map/>
         </div>
     )
-
 }
 
-Profile.propTypes = {
+MapPage.propTypes = {
     openPage: PropTypes.func
 }
 
-export default Profile;
+export default MapPage;
