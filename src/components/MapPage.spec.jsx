@@ -10,10 +10,10 @@ jest.mock("./Header", ()=>({Header: () => <div>Header component</div>}));
 describe("MapPage component", ()=>{
 
     it("renders correctly", ()=>{
-        render(
+        const {container} = render(
             <MapPage openPage={openPage}/>
         )
-        expect()
+        expect(container.innerHTML).toMatch("Map component")
     })
 })
 
