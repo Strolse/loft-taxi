@@ -25,7 +25,7 @@ describe("MapPage component", ()=>{
             <MapPage openPage={openPage}/> 
         );
         expect(container.innerHTML).toMatch("Map component");
-        expect(container.innerHTML).toMatch("Header component")
+        expect(container.innerHTML).toMatch("Header component");
     }
     )
 })

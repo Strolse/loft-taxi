@@ -1,21 +1,19 @@
 import React from "react";
-import Registration from "./Registration";
-import { render } from "@testing-library/react";
+import {render} from "@testing-library/react"
+import Login from "./Login";
 import { AuthContext } from "../context/AuthContext";
 
 const openPage = jest.fn();
 
-describe("Registration", () => {
+describe("Login", () => {
 
   it("renders correctly", () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <AuthContext.Provider value={{ login: jest.fn() }}>
-        <Registration openPage={openPage} />
+        <Login openPage={openPage} />
       </AuthContext.Provider>
     );
     expect(getByText('Пароль')).toBeInTheDocument();
-    expect(getByText('Регистрация')).toBeInTheDocument();
+    expect(container.innerHTML).toMatch('Войти');
   })
 })
-
-

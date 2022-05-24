@@ -6,7 +6,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic3Ryb2xzZSIsImEiOiJjbDNkOG5nbWowMGQyM29sZnNqd
 
 const Map = ()=>{
     const mapContainerRef = useRef(null);
-
+    
     useEffect(()=>{
         const map = new mapboxgl.Map({
             container: mapContainerRef.current,
@@ -20,7 +20,7 @@ const Map = ()=>{
 
 
     return (
-            <div className="map" ref={mapContainerRef}>
+            <div className="map" data-testid="map" ref={mapContainerRef}>
             </div>
     )
 }

@@ -1,27 +1,21 @@
-import React, {useContext} from "react";
+import React from "react";
 import Header from "./Header";
-import {render, screen} from "@testing-library/react"
+import { render } from "@testing-library/react"
+import { AuthContext } from "../context/AuthContext";
 
 const openPage = jest.fn();
 
+describe("Header", () => {
 
-
-jest.mock('react', () => {
-    
-    return {
-      useContext: jest.fn()
-    }
-  });
-
-
-describe("Header", ()=>{
-    it("renders correctly", ()=>{
-        render(<Header openPage={openPage} />); 
-        const buttonElement = screen.getByText();
-        expect(getByLabelText("Email")).toHaveAttribute('name', 'email')
-
-        
-    })
+  it("renders correctly", () => {
+    const { container, getByText } = render(
+      <AuthContext.Provider value={{ logout: jest.fn() }}>
+        <Header openPage={openPage} />
+      </AuthContext.Provider>
+    )
+    expect(getByText('Карта')).toBeInTheDocument();
+    expect(getByText('Профиль')).toBeInTheDocument();
+  })
 })
 
 

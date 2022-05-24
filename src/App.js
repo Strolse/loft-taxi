@@ -8,7 +8,12 @@ import { AuthProvider } from "./context/AuthContext";
 
 
 function App() {
-  const pages = { mapPage: <MapPage openPage={openPage} />, registration: <Registration openPage={openPage} />, login: <Login openPage={openPage} />, profile: <Profile openPage={openPage} /> };
+  const pages = { 
+    mapPage: <MapPage openPage={openPage} />, 
+    registration: <Registration openPage={openPage} />, 
+    login: <Login openPage={openPage} />, 
+    profile: <Profile openPage={openPage} /> };
+    
   const [page, setPage] = useState(pages.login);
 
   function openPage(page) {
