@@ -1,18 +1,30 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React from "react";
+import { connect } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
 import PropTypes from "prop-types";
 // import { Input, Button, Link } from "@mui/material";
 import { Button, Input } from "@material-ui/core";
 
-const Login = ({openPage}) => {
-    const { login} = useContext(AuthContext);
 
-    const logIn = (e) => {
+import { authenticateAction } from "../actions";
+import { store } from "../store/store";
+
+
+const Login = ({isLoggedIn, authenticateAction}) => {
+    
+
+    let navigate = useNavigate();
+    const logIn = async (e)=>{
         e.preventDefault();
         const email=e.target.email.value;
         const password=e.target.password.value;
-        login(email, password);
-    };
+  
+        await authenticateAction(email, password);
+
+        navigate("/map");
+    }
+    console.log(store.getState(), 'state')
 
     return (
         <div>
@@ -26,15 +38,16 @@ const Login = ({openPage}) => {
             </form>
             <div>
                 Новый пользователь?
-                <Button onClick={() => { openPage('registration') }}>Зарегистрируйтесь</Button>
+                <Link to="/registration">Зарегистрируйтесь</Link>
             </div>
         </div>
     )
 }
 
-Login.propTypes = {
-    openPage: PropTypes.func
-}
+// Login.propTypes = {
+//     openPage: PropTypes.func
+// }
+const mapStateToProps = (state) => ({isLoggedIn: state.auth.isLoggedIn});
 
-export default Login;
+export default connect(mapStateToProps, {authenticateAction})(Login);
 

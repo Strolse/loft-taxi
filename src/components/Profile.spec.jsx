@@ -17,7 +17,7 @@ describe("Profile component", ()=>{
 
     it("renders correctly", ()=>{
         const {container} = render(
-            <Profile openPage={openPage}/> 
+            <Profile /> 
         );
         expect(container.innerHTML).toMatch("Header component")
     }
