@@ -1,7 +1,9 @@
 import { DATA_CARD } from "../actions";
 
 const initialState = {
-  dataCard: {}
+  dataCard: {
+    cardNumber: "", expiryDate:'', cardName:'', cvc:''
+  }
 }
 
 export default function (state = initialState, action) {

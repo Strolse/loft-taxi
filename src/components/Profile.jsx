@@ -5,7 +5,11 @@ import { Button, Input } from "@material-ui/core";
 import Header from "./Header";
 import { saveCardAction } from "../actions";
 
-const Profile = ({ token, saveCardAction }) => {
+const Profile = ({ auth, user, saveCardAction }) => {
+    const savedCardName = user.dataCard.cardName;
+        const savedExpiryDate = user.dataCard.expiryDate;
+        const savedCardNumber = user.dataCard.cardNumber;
+        const savedCvc = user.dataCard.cvc;
 
     const saveCard = async (e)=>{
         e.preventDefault();
@@ -15,10 +19,10 @@ const Profile = ({ token, saveCardAction }) => {
         const cardNumber = e.target.card.value;
         const cvc = e.target.cvc.value;
 
-         await saveCardAction (cardNumber, expiryDate, cardName, cvc, token); 
+         await saveCardAction (cardNumber, expiryDate, cardName, cvc, auth.token); 
     }
-  
-    
+
+
 
     return (
         <div>
@@ -27,13 +31,13 @@ const Profile = ({ token, saveCardAction }) => {
             <p>Ввдеите платежные данные</p>
             <form onSubmit={saveCard}>
                 <label htmlFor="name">Имя владельца</label>
-                <Input type="name" placeholder="Loft" name="name" id="name" />
+                <Input type="name" placeholder="Loft" name="name" id="name" defaultValue={savedCardName}/>
                 <label htmlFor="card">Номер карты</label>
-                <Input type="number" placeholder="5545  2300  3432  4521" name="card" id="card" />
+                <Input type="number" placeholder="5545  2300  3432  4521" name="card" id="card" defaultValue={savedCardNumber}/>
                 <label htmlFor="date">MM/YY</label>
-                <Input type="text" placeholder="05/08" name="date" id="date" />
+                <Input type="text" placeholder="05/08" name="date" id="date" defaultValue={savedExpiryDate}/>
                 <label htmlFor="cvc">CVC</label>
-                <Input type="text" placeholder="667" name="cvc" id="cvc" />
+                <Input type="text" placeholder="667" name="cvc" id="cvc" defaultValue={savedCvc}/>
                 <Button type="submit">Сохранить</Button>
             </form>
         </div>
@@ -45,6 +49,6 @@ const Profile = ({ token, saveCardAction }) => {
 //     openPage: PropTypes.func
 // }
 
-const mapStateToProps = state => state.auth;
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {saveCardAction})(Profile);
