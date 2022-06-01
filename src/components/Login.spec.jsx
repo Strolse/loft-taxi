@@ -1,19 +1,58 @@
 import React from "react";
-import {render} from "@testing-library/react"
+import { Provider } from "react-redux";
+import { MemoryRouter, Route } from "react-router-dom";
+import { render, screen, fireEvent, userEvent } from "@testing-library/react"
+import { createMemoryHistory } from "history";
 import Login from "./Login";
-import { AuthContext } from "../context/AuthContext";
 
-const openPage = jest.fn();
+
+jest.mock("./Registration", () => {
+  const Registration = () => <div>Registration component</div>
+  return Registration
+});
+
+const mockStore = {
+  getState: () => { },
+  subscribe: () => { },
+  dispatch: () => { }
+}
 
 describe("Login", () => {
 
   it("renders correctly", () => {
+
+
     const { container, getByText } = render(
-      <AuthContext.Provider value={{ login: jest.fn() }}>
-        <Login openPage={openPage} />
-      </AuthContext.Provider>
+      <Provider store={mockStore}>
+        <MemoryRouter>
+          <Login />
+        </MemoryRouter>
+      </Provider>
     );
+
+
     expect(getByText('Пароль')).toBeInTheDocument();
     expect(container.innerHTML).toMatch('Войти');
   })
+
+  // describe("when clicked on navigation button", () => {
+  //   it("opened the correct page", async () => {
+  //     const history = createMemoryHistory();
+
+  //     const { container, getByTestId } = render(
+
+  //       <Provider store={mockStore}>
+  //         <MemoryRouter>
+  //           <Login />
+  //         </MemoryRouter>
+  //       </Provider>
+
+
+  //     );
+
+  //     await fireEvent.click(getByTestId("reg-link"));
+  //     screen.debug();
+  //     expect(container.innerHTML).toMatch("Registration component")
+  //   })
+  // })
 })

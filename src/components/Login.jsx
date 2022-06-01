@@ -11,7 +11,7 @@ import { authenticateAction } from "../actions";
 import { store } from "../store/store";
 
 
-const Login = ({isLoggedIn, authenticateAction}) => {
+const Login = ({authenticateAction}) => {
     
 
     let navigate = useNavigate();
@@ -24,7 +24,7 @@ const Login = ({isLoggedIn, authenticateAction}) => {
 
         navigate("/map");
     }
-    console.log(store.getState(), 'state')
+
 
     return (
         <div>
@@ -38,7 +38,7 @@ const Login = ({isLoggedIn, authenticateAction}) => {
             </form>
             <div>
                 Новый пользователь?
-                <Link to="/registration">Зарегистрируйтесь</Link>
+                <Link data-testid="reg-link" to="/registration">Зарегистрируйтесь</Link>
             </div>
         </div>
     )
@@ -47,7 +47,6 @@ const Login = ({isLoggedIn, authenticateAction}) => {
 // Login.propTypes = {
 //     openPage: PropTypes.func
 // }
-const mapStateToProps = (state) => ({isLoggedIn: state.auth.isLoggedIn});
 
-export default connect(mapStateToProps, {authenticateAction})(Login);
+export default connect(null, {authenticateAction})(Login);
 

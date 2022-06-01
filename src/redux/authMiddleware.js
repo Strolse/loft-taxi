@@ -4,7 +4,7 @@ import { serverLogin } from "../asyncActions/api";
 import { SAVE_CARD, dataCardAction } from "../actions";
 import { serverSendCard } from "../asyncActions/api";
 
-import { saveToken } from "../actions";
+// import { saveToken } from "../actions";
 
 
 export const authMiddleware = (store) => (next) => async (action) => {
