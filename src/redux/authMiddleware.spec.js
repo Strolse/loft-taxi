@@ -1,15 +1,9 @@
 import { authMiddleware } from "./authMiddleware";
-import { authenticateAction, saveCardAction, dataCardAction } from "../actions";
+import { authenticateAction, saveCardAction, dataCardAction } from "./actions";
 import { serverLogin, serverSendCard } from "../asyncActions/api.js";
 
 
-jest.mock("../asyncActions/api.js", () => {
-    return {
-        serverLogin: jest.fn(),
-        serverSendCard: jest.fn()
-    };
-});
-
+jest.mock("../asyncActions/api.js");
 
 describe("authMiddleware", () => {
     describe("action.type AUTHENTICATE", () => {

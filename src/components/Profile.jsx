@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Button, Input } from "@material-ui/core";
 import Header from "./Header";
-import { saveCardAction } from "../actions";
+import { saveCardAction } from "../redux/actions";
 
 const Profile = ({ auth, user, saveCardAction }) => {
     const savedCardName = user.dataCard.cardName;

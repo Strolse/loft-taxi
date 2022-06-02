@@ -1,7 +1,7 @@
-import { AUTHENTICATE, loginAction } from "../actions";
+import { AUTHENTICATE, loginAction } from "./actions";
 import { serverLogin } from "../asyncActions/api";
 
-import { SAVE_CARD, dataCardAction } from "../actions";
+import { SAVE_CARD, dataCardAction } from "./actions";
 import { serverSendCard } from "../asyncActions/api";
 
 // import { saveToken } from "../actions";

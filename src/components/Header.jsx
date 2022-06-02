@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { AppBar, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { logoutAction } from "../actions";
+import { logoutAction } from "../redux/actions";
 
 const Header = ({logoutAction}) => {
 

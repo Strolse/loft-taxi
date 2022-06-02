@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 import { Button, Input } from "@material-ui/core";
 
 
-import { authenticateAction } from "../actions";
-import { store } from "../store/store";
+import { authenticateAction } from "../redux/actions";
+import { store } from "../redux/store/store";
 
 
 const Login = ({authenticateAction}) => {

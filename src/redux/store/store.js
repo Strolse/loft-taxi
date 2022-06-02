@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 
-import { authMiddleware } from "../redux/authMiddleware";
+import { authMiddleware } from "../authMiddleware";
 import rootReducer from "../reducers/index.js";
 
 
