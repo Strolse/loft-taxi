@@ -21,7 +21,6 @@ export const authMiddleware = (store) => (next) => async (action) => {
         const success = await serverSendCard(cardNumber, expiryDate, cardName, cvc, token);
         if (success) {
             await store.dispatch(dataCardAction(cardNumber, expiryDate, cardName, cvc, token));
-            console.log(store.getState())
         }
     }
     

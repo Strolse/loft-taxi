@@ -26,7 +26,7 @@ const Profile = ({ auth, user, saveCardAction }) => {
         <div>
             <Header />
             <h2>Профиль</h2>
-            <p>Ввдеите платежные данные</p>
+            <p>Введите платежные данные</p>
             <form onSubmit={saveCard}>
                 <label htmlFor="name">Имя владельца</label>
                 <Input type="name" placeholder="Loft" name="name" id="name" defaultValue={savedCardName} />

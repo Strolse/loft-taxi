@@ -5,7 +5,7 @@ import Profile from "./Profile";
 import { saveCardAction } from "../actions";
 
 
-
+// saveCardAction = jest.fn();
 
 jest.mock("./Header", () => {
     const Header = () => <div>Header component</div>
@@ -17,18 +17,18 @@ describe("Profile component", () => {
 
     it("renders correctly", () => {
         const mockStore = {
-            getState: () => (
-                {
+            getState: () =>
+                {return{
+                    auth: {isLoggedIn: true},
                     user: {
                         dataCard: {
-                            cardName: "",
-                            expiryDate: "",
                             cardNumber: "",
+                            expiryDate: "",
+                            cardName: "",
                             cvc: ""
                         }
                     }
-                }
-            ),
+                }},
             subscribe: () => { },
             dispatch: () => { }
         }
@@ -38,6 +38,7 @@ describe("Profile component", () => {
                 <Profile />
             </Provider>
         );
+        screen.debug();
         expect(container.innerHTML).toMatch("Header component")
     }
     )
