@@ -1,11 +1,23 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { render, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import Profile from "./Profile";
-import { saveCardAction } from "../redux/actions";
+import configureStore from 'redux-mock-store'
 
 
-// saveCardAction = jest.fn();
+const middlewares = [];
+const mockStore = configureStore(middlewares);
+const initialState = {
+    user: {
+        dataCard: {
+            cardNumber: "",
+            expiryDate: "",
+            cardName: "",
+            cvc: ""
+        }
+    }
+};
+const store = mockStore(initialState);
 
 jest.mock("./Header", () => {
     const Header = () => <div>Header component</div>
@@ -14,36 +26,14 @@ jest.mock("./Header", () => {
 
 describe("Profile component", () => {
 
-
     it("renders correctly", () => {
-        const mockStore = {
-            getState: () =>
-                {return{
-                    auth: {isLoggedIn: true},
-                    user: {
-                        dataCard: {
-                            cardNumber: "",
-                            expiryDate: "",
-                            cardName: "",
-                            cvc: ""
-                        }
-                    }
-                }},
-            subscribe: () => { },
-            dispatch: () => { }
-        }
 
         const { container } = render(
-            <Provider store={mockStore}>
+            <Provider store={store}>
                 <Profile />
             </Provider>
         );
-        screen.debug();
         expect(container.innerHTML).toMatch("Header component")
     }
     )
 })
-
-// Не понимаю, в чем причина ошибки
-// Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate.
-// React limits the number of nested updates to prevent infinite loops.

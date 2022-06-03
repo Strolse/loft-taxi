@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { AppBar, Button } from "@material-ui/core";
+import { AppBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { logoutAction } from "../redux/actions";
 

@@ -3,7 +3,6 @@ import {render} from "@testing-library/react"
 import MapPage from "./MapPage";
 
 
-
 // jest.mock("./Map", ()=>({Map: () =><div>Map component</div>}));
 // jest.mock("./Header", ()=>({Header: () => <div>Header component</div>}));
 

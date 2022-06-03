@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
-import PropTypes from "prop-types";
 // import { Input, Button, Link } from "@mui/material";
 import { Button, Input } from "@material-ui/core";
 
 
 import { authenticateAction } from "../redux/actions";
-import { store } from "../redux/store/store";
+
 
 
 const Login = ({authenticateAction}) => {
@@ -44,9 +42,6 @@ const Login = ({authenticateAction}) => {
     )
 }
 
-// Login.propTypes = {
-//     openPage: PropTypes.func
-// }
 
 export default connect(null, {authenticateAction})(Login);
 

@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 import { Button, Input, FormLabel } from "@material-ui/core";
 import { Link } from "react-router-dom";
 

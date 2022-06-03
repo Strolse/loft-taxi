@@ -1,8 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { MemoryRouter, Route } from "react-router-dom";
-import { render, screen, fireEvent, userEvent } from "@testing-library/react"
-import { createMemoryHistory } from "history";
+import { MemoryRouter } from "react-router-dom";
+import { render } from "@testing-library/react"
 import Login from "./Login";
 
 
@@ -35,24 +34,4 @@ describe("Login", () => {
     expect(container.innerHTML).toMatch('Войти');
   })
 
-  // describe("when clicked on navigation button", () => {
-  //   it("opened the correct page", async () => {
-  //     const history = createMemoryHistory();
-
-  //     const { container, getByTestId } = render(
-
-  //       <Provider store={mockStore}>
-  //         <MemoryRouter>
-  //           <Login />
-  //         </MemoryRouter>
-  //       </Provider>
-
-
-  //     );
-
-  //     await fireEvent.click(getByTestId("reg-link"));
-  //     screen.debug();
-  //     expect(container.innerHTML).toMatch("Registration component")
-  //   })
-  // })
 })

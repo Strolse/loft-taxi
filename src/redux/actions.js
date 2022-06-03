@@ -1,4 +1,4 @@
-import { createActions } from "redux-actions";
+// import { createActions } from "redux-actions";
 
 export const LOG_IN = "LOG_IN"
 export const LOG_OUT = "LOG_OUT"
@@ -6,7 +6,7 @@ export const AUTHENTICATE = "AUTHENTICATE"
 
 export const SAVE_CARD = "SAVE_CARD"
 export const DATA_CARD = "DATA_CARD"
-export const AUTH_TOKEN = "AUTH_TOKEN"
+// export const AUTH_TOKEN = "AUTH_TOKEN"
 
 export const loginAction = (token) => ({ 
     type: LOG_IN, 
@@ -29,10 +29,10 @@ export const dataCardAction =(cardNumber, expiryDate, cardName, cvc, token)=>(
     payload: {cardNumber, expiryDate, cardName, cvc, token}}
 )
 
-export const saveToken = (token) => (
-    {
-        type: AUTH_TOKEN,
-        payload: token
-    })
+// export const saveToken = (token) => (
+//     {
+//         type: AUTH_TOKEN,
+//         payload: token
+//     })
 
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { Button, Input } from "@material-ui/core";
 import Header from "./Header";
 import { saveCardAction } from "../redux/actions";
@@ -43,9 +42,6 @@ const Profile = ({ auth, user, saveCardAction }) => {
 
 }
 
-// Profile.propTypes = {
-//     openPage: PropTypes.func
-// }
 
 const mapStateToProps = state => state;
 
