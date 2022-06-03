@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { render, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import Profile from "./Profile";
 import { saveCardAction } from "../redux/actions";
 
@@ -38,7 +38,6 @@ describe("Profile component", () => {
                 <Profile />
             </Provider>
         );
-        screen.debug();
         expect(container.innerHTML).toMatch("Header component")
     }
     )
