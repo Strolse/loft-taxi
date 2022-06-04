@@ -1,13 +1,11 @@
-import React, {useContext} from "react";
-import PropTypes from "prop-types";
-import { AuthContext } from "../context/AuthContext";
+import React from "react";
 import { Button, Input, FormLabel } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
-const Registration = ({openPage}) => {
-    const {login } = useContext(AuthContext);
+const Registration = () => {
+
     const logIn = (e) => {
         e.preventDefault();
-        login('test@mail.ru', '123');
     };
 
     return (
@@ -23,18 +21,15 @@ const Registration = ({openPage}) => {
                 <Button type="submit">Зарегистрироваться</Button>
             </form>
 
-
             <div>
                 Уже зарегистрирован?
-                <Button onClick={() => { openPage('login') }} >Войти</Button>
+                <Link to="/login" >Войти</Link>
             </div>
         </div>
     )
 
 }
 
-Registration.propTypes = {
-    openPage: PropTypes.func
-}
+
 
 export default Registration;

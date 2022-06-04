@@ -1,20 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Header from "./Header";
 import Map from "./Map";
 
 
-const MapPage = ({openPage})=>{
+const MapPage = ()=>{
     return (
         <div>
-            <Header openPage={openPage}/>
+            <Header/>
             <Map/>
         </div>
     )
 }
 
-MapPage.propTypes = {
-    openPage: PropTypes.func
-}
 
 export default MapPage;

@@ -1,23 +1,37 @@
 import React from "react";
-import {render} from "@testing-library/react"
+import { Provider } from "react-redux";
+import { render } from "@testing-library/react"
 import Profile from "./Profile";
+import configureStore from 'redux-mock-store'
 
 
+const middlewares = [];
+const mockStore = configureStore(middlewares);
+const initialState = {
+    user: {
+        dataCard: {
+            cardNumber: "",
+            expiryDate: "",
+            cardName: "",
+            cvc: ""
+        }
+    }
+};
+const store = mockStore(initialState);
 
-const openPage = jest.fn();
-
-
-
-jest.mock("./Header", ()=>{
-    const Header = ()=><div>Header component</div>
+jest.mock("./Header", () => {
+    const Header = () => <div>Header component</div>
     return Header
 });
 
-describe("Profile component", ()=>{
+describe("Profile component", () => {
 
-    it("renders correctly", ()=>{
-        const {container} = render(
-            <Profile openPage={openPage}/> 
+    it("renders correctly", () => {
+
+        const { container } = render(
+            <Provider store={store}>
+                <Profile />
+            </Provider>
         );
         expect(container.innerHTML).toMatch("Header component")
     }

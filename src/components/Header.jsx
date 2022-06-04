@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { AuthContext } from "../context/AuthContext";
-import { AppBar, Button } from "@material-ui/core";
+import { connect } from "react-redux";
+import { AppBar } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { logoutAction } from "../redux/actions";
 
-const Header = ({ openPage }) => {
-    const { logout } = useContext(AuthContext);
+const Header = ({logoutAction}) => {
 
     return (
         <div>
@@ -13,17 +14,18 @@ const Header = ({ openPage }) => {
                     <nav>
                         <ul>
                             <li>
-                                <Button onClick={() => { openPage('mapPage') }}>Карта</Button>
+                                <Link to="/map">Карта</Link>
+
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <Button onClick={() => { openPage('profile') }}>Профиль</Button>
+                                <Link to="/profile" >Профиль</Link>
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <Button onClick={logout}>Выйти</Button>
+                                <Link to="/login" onClick={()=>{logoutAction()}}>Выйти</Link>
                             </li>
                         </ul>
                     </nav>
@@ -33,8 +35,8 @@ const Header = ({ openPage }) => {
     )
 }
 
-Header.propTypes = {
-    openPage: PropTypes.func
-}
+// Header.propTypes = {
+//     openPage: PropTypes.func
+// }
 
-export default Header;
+export default connect(null, {logoutAction})(Header);

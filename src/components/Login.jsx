@@ -1,18 +1,28 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import PropTypes from "prop-types";
+import React from "react";
+import { connect } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 // import { Input, Button, Link } from "@mui/material";
 import { Button, Input } from "@material-ui/core";
 
-const Login = ({openPage}) => {
-    const { login} = useContext(AuthContext);
 
-    const logIn = (e) => {
+import { authenticateAction } from "../redux/actions";
+
+
+
+const Login = ({authenticateAction}) => {
+    
+
+    let navigate = useNavigate();
+    const logIn = async (e)=>{
         e.preventDefault();
         const email=e.target.email.value;
         const password=e.target.password.value;
-        login(email, password);
-    };
+  
+        await authenticateAction(email, password);
+
+        navigate("/map");
+    }
+
 
     return (
         <div>
@@ -26,15 +36,12 @@ const Login = ({openPage}) => {
             </form>
             <div>
                 Новый пользователь?
-                <Button onClick={() => { openPage('registration') }}>Зарегистрируйтесь</Button>
+                <Link data-testid="reg-link" to="/registration">Зарегистрируйтесь</Link>
             </div>
         </div>
     )
 }
 
-Login.propTypes = {
-    openPage: PropTypes.func
-}
 
-export default Login;
+export default connect(null, {authenticateAction})(Login);
 
