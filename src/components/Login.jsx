@@ -19,6 +19,7 @@ const Login = ({authenticateAction}) => {
         const password=e.target.password.value;
   
         await authenticateAction(email, password);
+        console.log('hi')
 
         navigate("/map");
     }
