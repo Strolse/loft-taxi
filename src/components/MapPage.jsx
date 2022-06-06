@@ -2,10 +2,11 @@ import React from "react";
 import Header from "./Header";
 import Map from "./Map";
 import OrderForm from "./OrderForm";
-import { serverRoute } from "../asyncActions/api";
+import { serverRegister } from "../asyncActions/api";
 
 
 const MapPage = ()=>{
+    // serverRegister("test5455@test.com", '000000', 'Olya', 'Str')
 
 
     return (

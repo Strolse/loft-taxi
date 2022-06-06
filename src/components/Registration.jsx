@@ -1,12 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Button, Input, FormLabel } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerAction } from "../redux/actions";
 
-const Registration = () => {
-
+const Registration = ({isLoggedIn, registerAction}) => {
+    let navigate = useNavigate();
     const logIn = (e) => {
         e.preventDefault();
+        const email=e.target.email.value;
+        const password=e.target.password.value;
+        const name=e.target.name.value;
+        const surname=e.target.name.value;
+        registerAction(email, password, name, surname);
     };
+
+    if(isLoggedIn){
+        navigate("/map");
+    }
 
     return (
         <div>
@@ -30,6 +41,6 @@ const Registration = () => {
 
 }
 
+const mapStateToProps = state => state.auth;
 
-
-export default Registration;
+export default connect(mapStateToProps, {registerAction})(Registration);

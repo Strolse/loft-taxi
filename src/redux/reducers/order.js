@@ -4,7 +4,7 @@ import { ADDRESS_LIST, COORDS } from "../actions"
 const defaultState = {
     addresses: [], 
     coords: [],
-    isOdered: false
+    isOrdered: false
 }
 
 export default function (state = defaultState, action) {

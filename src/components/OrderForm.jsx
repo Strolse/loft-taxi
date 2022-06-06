@@ -8,10 +8,9 @@ import { Autocomplete, TextField } from "@mui/material"
 const OrderForm = ({ user, order, loadAdressesAction, getRouteAction }) => {
     const [selectedFrom, setSelectedFrom] = useState(null);
     const [selectedTo, setSelectedTo] = useState(null);
-    console.log(selectedFrom, selectedTo)
 
     useEffect(() => {
-        if (user.dataCard !== null) {
+        if (user.dataCard.cardName) {
             loadAdressesAction();
         }
         
@@ -26,7 +25,7 @@ const OrderForm = ({ user, order, loadAdressesAction, getRouteAction }) => {
 
     return (
         <div>
-            {user.dataCard !== null ?
+            {user.dataCard.cardName ?
                 (
                     <form onSubmit={onSubmit}>
                         <Autocomplete

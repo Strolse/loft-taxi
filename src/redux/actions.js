@@ -14,6 +14,8 @@ export const ADDRESS_LIST = "ADDRESS_LIST"
 export const GET_ROUTE = "GET_ROUTE"
 export const COORDS = "COORDS"
 
+export const REGISTER ="REGISTER"
+
 
 export const loginAction = (token) => ({ 
     type: LOG_IN, 
@@ -54,7 +56,11 @@ export const getRouteAction = (from, to)=>(
 export const coordsAction = (coords)=>(
     {type: COORDS,
     payload: coords}
+)
 
+export const registerAction = (email, password, name, surname)=>(
+    {type: REGISTER,
+    payload:{email, password, name, surname}}
 )
 
 

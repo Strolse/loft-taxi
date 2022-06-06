@@ -1,7 +1,7 @@
 import { DATA_CARD } from "../actions";
 
 const initialState = {
-  dataCard: null
+  dataCard: {}
 }
 
 export default function (state = initialState, action) {

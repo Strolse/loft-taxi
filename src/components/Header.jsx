@@ -25,7 +25,7 @@ const Header = ({logoutAction}) => {
                         </ul>
                         <ul>
                             <li>
-                                <Link to="/login" onClick={()=>{logoutAction()}}>Выйти</Link>
+                                <Link to="/login" onClick={()=>{logoutAction(); localStorage.clear()}}>Выйти</Link>
                             </li>
                         </ul>
                     </nav>
