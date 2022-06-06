@@ -6,13 +6,21 @@ export const AUTHENTICATE = "AUTHENTICATE"
 
 export const SAVE_CARD = "SAVE_CARD"
 export const DATA_CARD = "DATA_CARD"
-// export const AUTH_TOKEN = "AUTH_TOKEN"
+
+export const LOAD_ADDRESSES = "LOAD_ADDRESSES"
+export const ADDRESS_LIST = "ADDRESS_LIST"
+// export const SELECTED_ADDRESS = "SELECTED_ADDRESS"
+
+export const GET_ROUTE = "GET_ROUTE"
+export const COORDS = "COORDS"
+
 
 export const loginAction = (token) => ({ 
     type: LOG_IN, 
     payload: token
 })
 export const logoutAction = () => ({ type: LOG_OUT })
+
 export const authenticateAction = (email, password) => ({
     type: AUTHENTICATE,
     payload: { email, password }
@@ -29,10 +37,24 @@ export const dataCardAction =(cardNumber, expiryDate, cardName, cvc, token)=>(
     payload: {cardNumber, expiryDate, cardName, cvc, token}}
 )
 
-// export const saveToken = (token) => (
-//     {
-//         type: AUTH_TOKEN,
-//         payload: token
-//     })
+export const loadAdressesAction = ()=>(
+    {type: LOAD_ADDRESSES}
+)
+
+export const addressListAction = (addressArr)=>(
+    {type: ADDRESS_LIST,
+    payload: addressArr}
+)
+
+export const getRouteAction = (from, to)=>(
+    {type: GET_ROUTE,
+    payload: {from, to}}
+    )
+
+export const coordsAction = (coords)=>(
+    {type: COORDS,
+    payload: coords}
+
+)
 
 

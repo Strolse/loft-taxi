@@ -9,7 +9,7 @@ import { authenticateAction } from "../redux/actions";
 
 
 
-const Login = ({authenticateAction}) => {
+const Login = ({authenticateAction, isLoggedIn}) => {
     
 
     let navigate = useNavigate();
@@ -19,10 +19,15 @@ const Login = ({authenticateAction}) => {
         const password=e.target.password.value;
   
         await authenticateAction(email, password);
-        console.log('hi')
+        
 
+
+        console.log(isLoggedIn)
+    }
+    if(isLoggedIn){
         navigate("/map");
     }
+
 
 
     return (
@@ -43,6 +48,6 @@ const Login = ({authenticateAction}) => {
     )
 }
 
-
-export default connect(null, {authenticateAction})(Login);
+const mapStateToProps = state => state.auth;
+export default connect(mapStateToProps, {authenticateAction})(Login);
 

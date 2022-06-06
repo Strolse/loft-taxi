@@ -5,10 +5,17 @@ import Header from "./Header";
 import { saveCardAction } from "../redux/actions";
 
 const Profile = ({ auth, user, saveCardAction }) => {
-    const savedCardName = user.dataCard.cardName;
-    const savedExpiryDate = user.dataCard.expiryDate;
-    const savedCardNumber = user.dataCard.cardNumber;
-    const savedCvc = user.dataCard.cvc;
+    let savedCardName = "";
+    let savedExpiryDate = "";
+    let savedCardNumber = "";
+    let savedCvc = "";
+
+    if(user.dataCard !== null){
+    savedCardName = user.dataCard.cardName;
+    savedExpiryDate = user.dataCard.expiryDate;
+    savedCardNumber = user.dataCard.cardNumber;
+    savedCvc = user.dataCard.cvc;
+    }
 
     const saveCard = async (e) => {
         e.preventDefault();
