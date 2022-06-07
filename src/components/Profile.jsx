@@ -35,13 +35,13 @@ const Profile = ({ auth, user, saveCardAction }) => {
             <p>Введите платежные данные</p>
             <form onSubmit={saveCard}>
                 <label htmlFor="name">Имя владельца</label>
-                <Input type="name" placeholder="Loft" name="name" id="name" defaultValue={savedCardName} />
+                <Input type="name" placeholder="Loft" name="name" required id="name" defaultValue={savedCardName} />
                 <label htmlFor="card">Номер карты</label>
-                <Input type="number" placeholder="5545  2300  3432  4521" name="card" id="card" defaultValue={savedCardNumber} />
+                <Input type="number" placeholder="5545  2300  3432  4521" name="card" required id="card" defaultValue={savedCardNumber} />
                 <label htmlFor="date">MM/YY</label>
-                <Input type="text" placeholder="05/08" name="date" id="date" defaultValue={savedExpiryDate} />
+                <Input type="text" placeholder="05/08" name="date" required id="date" defaultValue={savedExpiryDate} />
                 <label htmlFor="cvc">CVC</label>
-                <Input type="text" placeholder="667" name="cvc" id="cvc" defaultValue={savedCvc} />
+                <Input type="text" placeholder="667" name="cvc" required id="cvc" defaultValue={savedCvc} />
                 <Button type="submit">Сохранить</Button>
             </form>
         </div>

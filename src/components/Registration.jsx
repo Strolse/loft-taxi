@@ -24,11 +24,11 @@ const Registration = ({isLoggedIn, registerAction}) => {
             <h2>Регистрация</h2>
             <form onSubmit={logIn}>
                 <FormLabel htmlFor="email">Email*</FormLabel>
-                <Input type="email" placeholder="mail@mail.ru" name="email" id="email" />
+                <Input type="email" placeholder="mail@mail.ru" name="email" required id="email" />
                 <FormLabel htmlFor="name">Как вас зовут?*</FormLabel>
-                <Input type="text" placeholder="Петр Александрович" name="name" id="name" />
+                <Input type="text" placeholder="Петр Александрович" name="name" required id="name" />
                 <FormLabel htmlFor="password">Пароль</FormLabel>
-                <Input type="password" placeholder="Придумайте пароль*" name="password" id="password" />
+                <Input type="password" placeholder="Придумайте пароль*" name="password" required id="password" />
                 <Button type="submit">Зарегистрироваться</Button>
             </form>
 

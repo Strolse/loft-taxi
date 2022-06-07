@@ -35,9 +35,9 @@ const Login = ({authenticateAction, isLoggedIn}) => {
             <h2>Войти</h2>
             <form onSubmit={logIn}>
                 <label htmlFor="email">Email</label>
-                <Input type="email" placeholder="mail@mail.ru" name="email" id="email" />
+                <Input type="email" placeholder="mail@mail.ru" name="email" required id="email" />
                 <label htmlFor="password">Пароль</label>
-                <Input type="password" placeholder="*************" name="password" id="password" />
+                <Input type="password" placeholder="*************" name="password" required id="password" />
                 <Button type="submit">Войти</Button>
             </form>
             <div>
