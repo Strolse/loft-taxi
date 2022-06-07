@@ -20,14 +20,10 @@ const Login = ({authenticateAction, isLoggedIn}) => {
   
         await authenticateAction(email, password);
         
-
-
-        console.log(isLoggedIn)
     }
     if(isLoggedIn){
         navigate("/map");
     }
-
 
 
     return (

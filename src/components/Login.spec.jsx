@@ -11,7 +11,7 @@ jest.mock("./Registration", () => {
 });
 
 const mockStore = {
-  getState: () => { },
+  getState: () => ({ auth: {} }),
   subscribe: () => { },
   dispatch: () => { }
 }
@@ -20,7 +20,6 @@ describe("Login", () => {
 
   it("renders correctly", () => {
 
-
     const { container, getByText } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
@@ -28,7 +27,6 @@ describe("Login", () => {
         </MemoryRouter>
       </Provider>
     );
-
 
     expect(getByText('Пароль')).toBeInTheDocument();
     expect(container.innerHTML).toMatch('Войти');

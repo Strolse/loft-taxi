@@ -16,7 +16,7 @@ const Map = ({ isOrdered, coords }) => {
             center: [30.312786581010016, 59.93470138710765],
             zoom: 11
         });
-        console.log(isOrdered)
+  
         map.on('load', () => {
             if (isOrdered) {
 
