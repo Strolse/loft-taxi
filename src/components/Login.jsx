@@ -9,7 +9,7 @@ import { authenticateAction } from "../redux/actions";
 
 
 
-const Login = ({authenticateAction}) => {
+const Login = ({authenticateAction, isLoggedIn}) => {
     
 
     let navigate = useNavigate();
@@ -19,7 +19,9 @@ const Login = ({authenticateAction}) => {
         const password=e.target.password.value;
   
         await authenticateAction(email, password);
-
+        
+    }
+    if(isLoggedIn){
         navigate("/map");
     }
 
@@ -29,9 +31,9 @@ const Login = ({authenticateAction}) => {
             <h2>Войти</h2>
             <form onSubmit={logIn}>
                 <label htmlFor="email">Email</label>
-                <Input type="email" placeholder="mail@mail.ru" name="email" id="email" />
+                <Input type="email" placeholder="mail@mail.ru" name="email" required id="email" />
                 <label htmlFor="password">Пароль</label>
-                <Input type="password" placeholder="*************" name="password" id="password" />
+                <Input type="password" placeholder="*************" name="password" required id="password" />
                 <Button type="submit">Войти</Button>
             </form>
             <div>
@@ -42,6 +44,6 @@ const Login = ({authenticateAction}) => {
     )
 }
 
-
-export default connect(null, {authenticateAction})(Login);
+const mapStateToProps = state => state.auth;
+export default connect(mapStateToProps, {authenticateAction})(Login);
 
