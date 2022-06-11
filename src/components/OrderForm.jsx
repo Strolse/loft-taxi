@@ -1,60 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { loadAdressesAction, getRouteAction } from "../redux/actions";
-import { Autocomplete, TextField } from "@mui/material"
+import { loadAdressesAction, getRouteAction, emptyCoordsAction } from "../redux/actions";
+import { useForm, Controller } from "react-hook-form";
+import { Autocomplete, TextField, Button } from "@mui/material"
 
 
-const OrderForm = ({ user, order, loadAdressesAction, getRouteAction }) => {
-    const [selectedFrom, setSelectedFrom] = useState(null);
-    const [selectedTo, setSelectedTo] = useState(null);
+const OrderForm = ({ order, loadAdressesAction, getRouteAction, emptyCoordsAction }) => {
+    const { control,
+        formState: {
+            isValid
+        },
+        handleSubmit,
+        reset,
+        watch
+
+    } = useForm({
+        mode: "onChange",
+    });
 
     useEffect(() => {
-        if (user.dataCard.cardName) {
-            loadAdressesAction();
-        }
-        
+        loadAdressesAction();
     }, [])
 
-    function onSubmit(e){
-        e.preventDefault();
-        if(selectedFrom && selectedTo){
-            getRouteAction(selectedFrom, selectedTo)
-        }
+    function onSubmit(data) {
+        const { selectedFrom, selectedTo } = data;
+        getRouteAction(selectedFrom, selectedTo);
+        reset();
     }
 
     return (
         <div>
-            {user.dataCard.cardName ?
+            {!order.isOrdered ?
                 (
-                    <form onSubmit={onSubmit}>
-                        <Autocomplete
-                            onChange={(event, value) => setSelectedFrom(value)}
-                            disablePortal
-                            id="combo-box-demo"
-                            options={order.addresses.filter(name => name !== selectedTo)}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Откуда" />
-                            }
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <Controller
+                            control={control}
+                            name="selectedFrom"
+                            rules={{ required: true }}
+                            render={({ field: { onChange } }) => (
+                                <Autocomplete
+                                    onChange={(event, value) => { onChange(value) }}
+                                    options={order.addresses.filter(name => name !== watch("selectedTo"))}
+                                    sx={{ width: 300 }}
+                                    renderInput={(params) => <TextField {...params} label="Откуда" />
+                                    }
+                                />
+                            )}
                         />
-                        <Autocomplete
-                            onChange={(event, value) => setSelectedTo(value)}
-                            disablePortal
-                            id="combo-box-demo"
-                            options={order.addresses.filter(name => name !== selectedFrom)}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Куда" />
-                            }
+                        <Controller
+                            control={control}
+                            name="selectedTo"
+                            rules={{ required: true }}
+                            render={({ field: { onChange } }) => (
+                                <Autocomplete
+                                    onChange={(event, value) => { onChange(value) }}
+                                    options={order.addresses.filter(name => name !== watch("selectedFrom"))}
+                                    sx={{ width: 300 }}
+                                    renderInput={(params) => <TextField {...params} label="Куда" />
+                                    }
+                                />
+                            )}
                         />
-                        <button >Заказать</button>
+                        <Button type="submit" disabled={!isValid}>Заказать</Button>
                     </form>
                 ) : (
                     <div>
-                        <h2>Заполните платежные данные</h2>
+                        <h2>Заказ размещен</h2>
                         <p>
-                            Укажите информацию о банковской карте, чтобы сделать заказ.
+                            Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
                         </p>
-                        <Link to="/profile" >Перейти в профиль</Link>
+                        <Button onClick={() => { emptyCoordsAction() }}>Сделать новый заказ</Button>
                     </div>
                 )
             }
@@ -64,4 +79,4 @@ const OrderForm = ({ user, order, loadAdressesAction, getRouteAction }) => {
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { loadAdressesAction, getRouteAction })(OrderForm);
+export default connect(mapStateToProps, { loadAdressesAction, getRouteAction, emptyCoordsAction })(OrderForm);

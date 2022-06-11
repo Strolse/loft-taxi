@@ -1,35 +1,69 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Input, FormLabel } from "@material-ui/core";
+import { useForm } from "react-hook-form";
+import { Button, Input, FormLabel, FormHelperText } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { registerAction } from "../redux/actions";
 
-const Registration = ({isLoggedIn, registerAction}) => {
+const Registration = ({ isLoggedIn, registerAction }) => {
+    const { register,
+        formState: {
+            errors, isValid
+        },
+        handleSubmit
+    } = useForm({
+        mode: "onChange"
+    });
+
     let navigate = useNavigate();
-    const logIn = (e) => {
-        e.preventDefault();
-        const email=e.target.email.value;
-        const password=e.target.password.value;
-        const name=e.target.name.value;
-        const surname=e.target.name.value;
+
+    const logIn = (data) => {
+        const {email, name, password} = data;
+        const surname = name;
         registerAction(email, password, name, surname);
     };
 
-    if(isLoggedIn){
+    if (isLoggedIn) {
         navigate("/map");
     }
 
     return (
         <div>
             <h2>Регистрация</h2>
-            <form onSubmit={logIn}>
+            <form onSubmit={handleSubmit(logIn)}>
                 <FormLabel htmlFor="email">Email*</FormLabel>
-                <Input type="email" placeholder="mail@mail.ru" name="email" required id="email" />
+                <Input {...register('email', {
+                    required: "Введите email",
+                    pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
+                        message: "Введите корректный адрес электронной почты"
+                    }
+                })}
+                    placeholder="mail@mail.ru"
+                />
+                <FormHelperText error component="div">
+                    {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
+                </FormHelperText>
                 <FormLabel htmlFor="name">Как вас зовут?*</FormLabel>
-                <Input type="text" placeholder="Петр Александрович" name="name" required id="name" />
+                <Input {...register('name', {
+                    required: "Введите имя"
+                })}
+                    placeholder="Петр Александрович"
+                />
+                <FormHelperText error component="div">
+                    {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
+                </FormHelperText>
                 <FormLabel htmlFor="password">Пароль</FormLabel>
-                <Input type="password" placeholder="Придумайте пароль*" name="password" required id="password" />
-                <Button type="submit">Зарегистрироваться</Button>
+                <Input {...register('password', {
+                    required: "Введите пароль"
+                })}
+                    type="password" placeholder="Придумайте пароль*"
+                />
+                <FormHelperText error component="div">
+                    {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
+                </FormHelperText>
+
+                <Button type="submit" disabled={!isValid}>Зарегистрироваться</Button>
             </form>
 
             <div>
@@ -43,4 +77,4 @@ const Registration = ({isLoggedIn, registerAction}) => {
 
 const mapStateToProps = state => state.auth;
 
-export default connect(mapStateToProps, {registerAction})(Registration);
+export default connect(mapStateToProps, { registerAction })(Registration);

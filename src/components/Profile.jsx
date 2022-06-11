@@ -1,54 +1,94 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Input } from "@material-ui/core";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { Input, Button, InputLabel, Typography, Grid, FormControl, FormHelperText, Box } from "@mui/material";
 import Header from "./Header";
 import { saveCardAction } from "../redux/actions";
 
 const Profile = ({ auth, user, saveCardAction }) => {
-    let savedCardName = "";
-    let savedExpiryDate = "";
-    let savedCardNumber = "";
-    let savedCvc = "";
+    const { register,
+        formState: {
+            errors, isValid, isSubmitted
+        },
+        handleSubmit
+    } = useForm({
+        mode: "onChange",
+        defaultValues: {
+            name: user.dataCard.cardName,
+            date: user.dataCard.expiryDate,
+            card: user.dataCard.cardNumber,
+            cvc: user.dataCard.cvc
+        }
+    });
+    console.log(isSubmitted, "1")
+    const saveCard = async (data) => {
+        const { name, date, card, cvc } = data;
 
-    if(user.dataCard !== null){
-    savedCardName = user.dataCard.cardName;
-    savedExpiryDate = user.dataCard.expiryDate;
-    savedCardNumber = user.dataCard.cardNumber;
-    savedCvc = user.dataCard.cvc;
-    }
-
-    const saveCard = async (e) => {
-        e.preventDefault();
-
-        const cardName = e.target.name.value;
-        const expiryDate = e.target.date.value;
-        const cardNumber = e.target.card.value;
-        const cvc = e.target.cvc.value;
-
-        await saveCardAction(cardNumber, expiryDate, cardName, cvc, auth.token);
+        await saveCardAction(card, date, name, cvc, auth.token);
     }
 
     return (
         <div>
             <Header />
-            <h2>Профиль</h2>
-            <p>Введите платежные данные</p>
-            <form onSubmit={saveCard}>
-                <label htmlFor="name">Имя владельца</label>
-                <Input type="name" placeholder="Loft" name="name" required id="name" defaultValue={savedCardName} />
-                <label htmlFor="card">Номер карты</label>
-                <Input type="number" placeholder="5545  2300  3432  4521" name="card" required id="card" defaultValue={savedCardNumber} />
-                <label htmlFor="date">MM/YY</label>
-                <Input type="text" placeholder="05/08" name="date" required id="date" defaultValue={savedExpiryDate} />
-                <label htmlFor="cvc">CVC</label>
-                <Input type="text" placeholder="667" name="cvc" required id="cvc" defaultValue={savedCvc} />
-                <Button type="submit">Сохранить</Button>
-            </form>
-        </div>
-    )
+            {!isSubmitted ?
+                (<> <h2>Профиль</h2>
+                    <p>Введите платежные данные</p>
+                    <form onSubmit={handleSubmit(saveCard)}>
+                        <InputLabel htmlFor="name">Имя владельца</InputLabel>
+                        <Input {...register('name', {
+                            required: "Введите имя"
+                        })}
+                            placeholder="Loft" />
+                        <FormHelperText error component="div">
+                            {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
+                        </FormHelperText>
+                        <InputLabel htmlFor="card">Номер карты</InputLabel>
+                        <Input {...register('card', {
+                            required: "Введите номер карты",
+                            minLength: {
+                                value: 16,
+                                message: "В номере карты 16 цифр"
+                            },
+                            maxLength: {
+                                value: 16,
+                                message: "В номере карты 16 цифр"
+                            }
+                        })}
+                            type="number" placeholder="5545  2300  3432  4521" />
+                        <FormHelperText error component="div">
+                            {errors?.card && <p>{errors?.card?.message || "Error!"}</p>}
+                        </FormHelperText>
+                        <InputLabel htmlFor="date">MM/YY</InputLabel>
+                        <Input {...register('date', {
+                            required: "Введите дату"
+                        })}
+                            placeholder="05/08" />
+                        <FormHelperText error component="div">
+                            {errors?.date && <p>{errors?.date?.message || "Error!"}</p>}
+                        </FormHelperText>
+                        <InputLabel htmlFor="cvc">CVC</InputLabel>
+                        <Input {...register('cvc', {
+                            required: "Введите cvc"
+                        })}
+                            type="text" placeholder="667" name="cvc" required id="cvc" />
+                        <FormHelperText error component="div">
+                            {errors?.cvc && <p>{errors?.cvc?.message || "Error!"}</p>}
+                        </FormHelperText>
+                        <Button type="submit" disabled={!isValid}>Сохранить</Button>
+                    </form>
+                </>
 
+                ) : (
+                    <div>
+                        <h2>Профиль</h2>
+                        <p>Платёжные данные обновлены. Теперь вы можете заказывать такси.</p>
+                        <Link to="/map">Перейти на карту</Link>
+                    </div>
+                )
+            }
+        </div>)
 }
-
 
 const mapStateToProps = state => state;
 

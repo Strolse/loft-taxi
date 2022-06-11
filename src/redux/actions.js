@@ -13,6 +13,7 @@ export const ADDRESS_LIST = "ADDRESS_LIST"
 
 export const GET_ROUTE = "GET_ROUTE"
 export const COORDS = "COORDS"
+export const EMPTY_COORDS = "EMPTY_COORDS"
 
 export const REGISTER ="REGISTER"
 
@@ -56,6 +57,10 @@ export const getRouteAction = (from, to)=>(
 export const coordsAction = (coords)=>(
     {type: COORDS,
     payload: coords}
+)
+
+export const emptyCoordsAction = ()=>(
+    {type: EMPTY_COORDS}
 )
 
 export const registerAction = (email, password, name, surname)=>(
