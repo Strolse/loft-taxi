@@ -36,11 +36,16 @@ const theme = createTheme({
         // Name of the slot
         root: {
           // Some CSS
-
           backgroundColor: '#FDBF5A',
           color: '#000',
           textTransform: "none",
-          borderRadius: '70px'
+          borderRadius: '70px',
+         '&:hover': {
+            backgroundColor: '#FFA842'
+          },
+          '&:disabled': {
+            backgroundColor: '#D8D7D5'
+          }
         },
       },
     },
