@@ -1,30 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import { connect } from "react-redux";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button, InputLabel, Typography, Grid, FormControl, FormHelperText, Box, Paper } from "@mui/material";
+import { Typography, Grid, Box, Paper } from "@mui/material";
 import { authenticateAction } from "../redux/actions";
 import logo from "../pages/Login/logo.png"
 import bg from "../pages/Login/bg.jpg"
+import LoginForm from "./LoginForm";
+import RegistrationForm from "./RegistrationForm";
 
-const Login = ({ authenticateAction, isLoggedIn }) => {
-
-    const { register,
-        formState: {
-            errors, isValid
-        },
-        handleSubmit
-    } = useForm({
-        mode: "onChange"
-    });
-
+const Login = ({ isLoggedIn, formType }) => {
     let navigate = useNavigate();
-    const logIn = async (data) => {
-        console.log(data)
-
-        const { email, password } = data;
-        await authenticateAction(email, password);
-    }
 
     if (isLoggedIn) {
         navigate("/map");
@@ -64,40 +49,8 @@ const Login = ({ authenticateAction, isLoggedIn }) => {
                     backgroundColor: "#fff",
                     borderRadius: "20px"
                 }}>
-                    <Box component="form" onSubmit={handleSubmit(logIn)}
-                        sx={{ display: "grid" }}>
-                        <Typography component="h1" variant="h4"
-                            sx={{ mb: "57px" }}>
-                            Войти</Typography>
-                        <InputLabel htmlFor="email">Email</InputLabel>
-                        <Input {...register('email', {
-                            required: "Введите email",
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
-                                message: "Введите корректный адрес электронной почты"
-                            }
-                        })}
-                            placeholder="mail@mail.ru"
-                        />
-                        <FormHelperText error component="div">
-                            {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
-                        </FormHelperText>
-                        <InputLabel htmlFor="password">Пароль</InputLabel>
-                        <Input {...register('password', {
-                            required: "Введите пароль"
-                        })} type="password" placeholder="*************" id="password"
-                        />
-                        <FormHelperText error component="div">
-                            {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
-                        </FormHelperText>
-                        <Button type="submit" disabled={!isValid}
-                            sx={{ mt: "78px", mb: "33px" }}>
-                            Войти</Button>
-                        <div>
-                            Новый пользователь?
-                            <Link data-testid="reg-link" to="/registration">Зарегистрируйтесь</Link>
-                        </div>
-                    </Box>
+                    {formType==="login" && <LoginForm />}
+                    {formType==="registration" && <RegistrationForm />}
                 </Box>
             </Grid>
         </Grid>
@@ -106,4 +59,3 @@ const Login = ({ authenticateAction, isLoggedIn }) => {
 
 const mapStateToProps = state => state.auth;
 export default connect(mapStateToProps, { authenticateAction })(Login);
-
