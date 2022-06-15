@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadAdressesAction, getRouteAction, emptyCoordsAction } from "../redux/actions";
 import { useForm, Controller } from "react-hook-form";
-import { Autocomplete, TextField, Button } from "@mui/material"
+import { Autocomplete, TextField, Button, Box, Grid, Typography } from "@mui/material"
 
 
 const OrderForm = ({ order, loadAdressesAction, getRouteAction, emptyCoordsAction }) => {
@@ -28,53 +28,52 @@ const OrderForm = ({ order, loadAdressesAction, getRouteAction, emptyCoordsActio
         reset();
     }
 
-    return (
-        <div>
-            {!order.isOrdered ?
-                (
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Controller
-                            control={control}
-                            name="selectedFrom"
-                            rules={{ required: true }}
-                            render={({ field: { onChange } }) => (
-                                <Autocomplete
-                                    onChange={(event, value) => { onChange(value) }}
-                                    options={order.addresses.filter(name => name !== watch("selectedTo"))}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Откуда" />
-                                    }
-                                />
-                            )}
-                        />
-                        <Controller
-                            control={control}
-                            name="selectedTo"
-                            rules={{ required: true }}
-                            render={({ field: { onChange } }) => (
-                                <Autocomplete
-                                    onChange={(event, value) => { onChange(value) }}
-                                    options={order.addresses.filter(name => name !== watch("selectedFrom"))}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Куда" />
-                                    }
-                                />
-                            )}
-                        />
-                        <Button type="submit" disabled={!isValid}>Заказать</Button>
-                    </form>
-                ) : (
-                    <div>
-                        <h2>Заказ размещен</h2>
-                        <p>
-                            Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
-                        </p>
-                        <Button onClick={() => { emptyCoordsAction() }}>Сделать новый заказ</Button>
-                    </div>
-                )
-            }
-        </div>
-    )
+    return !order.isOrdered ?  (
+                        <Box component="form" onSubmit={handleSubmit(onSubmit)}
+                            sx={{ display: "grid" }}>
+                            <Controller
+                                control={control}
+                                name="selectedFrom"
+                                rules={{ required: true }}
+                                render={({ field: { onChange } }) => (
+                                    <Autocomplete
+                                        onChange={(event, value) => { onChange(value) }}
+                                        options={order.addresses.filter(name => name !== watch("selectedTo"))}
+
+                                        renderInput={(params) => <TextField {...params} variant="standard" label="Откуда" />
+                                        }
+                                    />
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="selectedTo"
+                                rules={{ required: true }}
+                                render={({ field: { onChange } }) => (
+                                    <Autocomplete
+                                        onChange={(event, value) => { onChange(value) }}
+                                        sx={{mb:"23px"}}
+                                        options={order.addresses.filter(name => name !== watch("selectedFrom"))}
+
+                                        renderInput={(params) => <TextField {...params} variant="standard" label="Куда" />
+                                        }
+                                    />
+                                )}
+                            />
+                            <Button type="submit" disabled={!isValid}>Заказать</Button>
+                        </Box>
+                    ) : (
+                        <Box sx={{ display: "grid" }}>
+                            <Typography component="h1" variant="h5">Заказ размещен</Typography>
+                            <p>
+                                Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
+                            </p>
+                            <Button onClick={() => { emptyCoordsAction() }}>Сделать новый заказ</Button>
+                        </Box>
+                    )
+                
+
+    
 
 }
 const mapStateToProps = state => state;

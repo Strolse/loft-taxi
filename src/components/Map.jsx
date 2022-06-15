@@ -29,6 +29,7 @@ const Map = ({ isOrdered, coords }) => {
 
     
     return (
+        
         <div className="map" data-testid="map" ref={mapContainerRef}>
         </div>
     )

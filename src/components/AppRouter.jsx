@@ -11,14 +11,14 @@ const AppRouter = () => {
         <Routes>
             <Route path="/login" element={<Login formType="login"/>} />
             <Route path="/registration" element={<Login formType="registration"/>} />
-            <Route path="/map" element={
+            <Route path="/order" element={
                 <RequireAuth>
-                    <MapPage />
+                    <MapPage pageType="order"/>
                 </RequireAuth>
             } />
             <Route path="/profile" element={
                 <RequireAuth>
-                    <Profile />
+                    <MapPage pageType="profile"/>
                 </RequireAuth>
             } />
             <Route path="*" element={<Login formType="login"/>} />

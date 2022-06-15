@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { Typography, Grid, Box, Paper } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Grid, Box} from "@mui/material";
 import { authenticateAction } from "../redux/actions";
-import logo from "../pages/Login/logo.png"
-import bg from "../pages/Login/bg.jpg"
+import logo from "./Login/logo.png"
+import bg from "./Login/bg.jpg"
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
 
@@ -12,7 +12,7 @@ const Login = ({ isLoggedIn, formType }) => {
     let navigate = useNavigate();
 
     if (isLoggedIn) {
-        navigate("/map");
+        navigate("/order");
     }
 
     return (

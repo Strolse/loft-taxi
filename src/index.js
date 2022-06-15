@@ -21,7 +21,7 @@ const theme = createTheme({
     },
     secondary: {
       light: '#0066ff',
-      main: '#1C1A19',
+      main: '#FDBF5A',
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
@@ -45,6 +45,21 @@ const theme = createTheme({
           },
           '&:disabled': {
             backgroundColor: '#D8D7D5'
+          }
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+
+          color: '#fff',
+          textDecoration: "none",
+
+         '&:hover': {
+            color: '#FDBF5A'
           }
         },
       },
