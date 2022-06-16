@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Button, Input, InputLabel, FormHelperText, Box, Typography, FormGroup, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
-import { registerAction } from "../redux/actions";
+import { registerAction } from "../../redux/actions";
 
 const RegistrationForm = ({ registerAction }) => {
     const { register,

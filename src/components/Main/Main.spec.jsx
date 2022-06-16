@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react"
-import MapPage from "./MapPage";
+import Main from "./Main";
 
 // jest.mock("./Map", ()=>({Map: () =><div>Map component</div>}));
 
@@ -19,11 +19,11 @@ jest.mock("./OrderForm", () => {
     return OrderForm
 });
 
-describe("MapPage component", () => {
+describe("Main component", () => {
 
     it("renders correctly", () => {
         const { container } = render(
-            <MapPage />
+            <Main />
         );
         expect(container.innerHTML).toMatch("Map component");
         expect(container.innerHTML).toMatch("Header component");

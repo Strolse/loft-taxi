@@ -40,7 +40,7 @@ const theme = createTheme({
           color: '#000',
           textTransform: "none",
           borderRadius: '70px',
-         '&:hover': {
+          '&:hover': {
             backgroundColor: '#FFA842'
           },
           '&:disabled': {
@@ -54,13 +54,28 @@ const theme = createTheme({
         // Name of the slot
         root: {
           // Some CSS
-
           color: '#fff',
           textDecoration: "none",
-
-         '&:hover': {
+          '&:hover': {
             color: '#FDBF5A'
           }
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          underline: {
+            
+          }
+
+          // color: '#fff',
+          // textDecoration: "none",
+          // '&:hover': {
+          //   color: '#FDBF5A'
+          // }
         },
       },
     },

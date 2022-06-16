@@ -24,9 +24,9 @@ jest.mock("./Profile", ()=>{
     return Profile
 });
 
-jest.mock("./MapPage", ()=>{
-    const MapPage = ()=><div>MapPage component</div>
-    return MapPage
+jest.mock("./Main", ()=>{
+    const Main = ()=><div>Main component</div>
+    return Main
 });
 
 describe("AppRouter", () => {
@@ -63,7 +63,7 @@ describe("AppRouter", () => {
         expect(container.innerHTML).toMatch("Profile component");
     })
 
-    it("renders correctly with MapPage component", () => {
+    it("renders correctly with Main component", () => {
         const {container} = render(
             <Provider store={mockStore}>
                 <MemoryRouter initialEntries={['/map']}>
@@ -71,7 +71,7 @@ describe("AppRouter", () => {
                 </MemoryRouter>
             </Provider>
         );
-        expect(container.innerHTML).toMatch("MapPage component");
+        expect(container.innerHTML).toMatch("Main component");
     })
 
 })

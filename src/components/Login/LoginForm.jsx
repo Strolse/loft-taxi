@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Input, Button, InputLabel, Typography, FormGroup, FormHelperText, Box, Stack } from "@mui/material";
-import { authenticateAction } from "../redux/actions";
+import { authenticateAction } from "../../redux/actions";
 
 
 const LoginForm = ({ authenticateAction }) => {

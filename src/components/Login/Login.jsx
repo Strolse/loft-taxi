@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Grid, Box} from "@mui/material";
-import { authenticateAction } from "../redux/actions";
-import logo from "./Login/logo.png"
-import bg from "./Login/bg.jpg"
+import { authenticateAction } from "../../redux/actions";
+import logo from "./logo.png"
+import bg from "./bg.jpg"
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
 

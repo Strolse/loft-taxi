@@ -1,13 +1,12 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { AppBar, Toolbar, Box, Stack, Link, MenuItem, MenuList, Tabs, Tab } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import { logoutAction } from "../redux/actions";
-import logo from "./Main/logo.png"
+import { AppBar, Toolbar, Box, Stack, Link } from "@mui/material";
+import { logoutAction } from "../../redux/actions";
+import logo from "./logo.png"
 
 const Header = ({ logoutAction }) => {
-
 
     return (
         <div>

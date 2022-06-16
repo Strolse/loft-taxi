@@ -2,12 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { Input, Button, InputLabel, Card, Typography, Grid, Stack, FormHelperText, Box, FormGroup, CardContent, CardMedia } from "@mui/material";
-import { saveCardAction } from "../redux/actions";
-import cardLogo from "./Main/ProfileForm/card-logo.png"
-import cardSign from "./Main/ProfileForm/card-sign.png"
-import cardCircle from "./Main/ProfileForm/card-circle.png"
-
+import { Input, Button, InputLabel, Card, Typography, Grid, Stack, FormHelperText, Box, FormGroup, CardMedia } from "@mui/material";
+import { saveCardAction } from "../../../redux/actions";
+import cardLogo from "./card-logo.png"
+import cardSign from "./card-sign.png"
+import cardCircle from "./card-circle.png"
 
 
 const ProfileForm = ({ auth, user, saveCardAction }) => {
@@ -26,16 +25,18 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
             cvc: user.dataCard.cvc
         }
     });
-    console.log(isSubmitted, "1")
+
     const saveCard = async (data) => {
         const { name, date, card, cvc } = data;
-
         await saveCardAction(card, date, name, cvc, auth.token);
     }
 
     return !isSubmitted ? (
         <Box component="form" onSubmit={handleSubmit(saveCard)}
-            sx={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "44px 5%" }}>
+            sx={{
+                display: "flex", flexDirection: "column",
+                alignItems: "center", padding: "44px 5%"
+            }}>
             <Typography component="h1" variant="h4">Профиль</Typography>
             <p>Введите платежные данные</p>
             <Grid container spacing={7}>
@@ -100,17 +101,19 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
                         padding: "18px 16px 18px 28px",
                         display: "flex", flexDirection: "column", justifyContent: "space-between"
                     }}>
-
                         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                             <CardMedia
                                 component="img"
                                 image={cardLogo}
                                 sx={{ width: "34px", height: "34px" }}
                             />
-                            <Typography component='p'>{watch('date') || user.dataCard.expiryDate}</Typography>
+                            <Typography
+                                component='p'>{watch('date') || user.dataCard.expiryDate}
+                            </Typography>
                         </Box>
-                        <Typography component='p'>{watch('card') || user.dataCard.cardNumber}</Typography>
-
+                        <Typography
+                            component='p'>{watch('card') || user.dataCard.cardNumber}
+                        </Typography>
                         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                             <CardMedia
                                 component="img"
@@ -126,18 +129,22 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
                     </Card>
                 </Grid>
             </Grid>
-            <Button type="submit" disabled={!isValid} sx={{ width: "353px" }}>
+            <Button type="submit" disabled={!isValid}
+                sx={{ width: "353px" }}>
                 Сохранить</Button>
         </Box>
-
     ) : (
-        <div>
-            <h2>Профиль</h2>
-            <p>Платёжные данные обновлены. Теперь вы можете заказывать такси.</p>
-            <Link to="/order">Перейти на карту</Link>
-        </div>
+        <Box sx={{
+            display: "flex", flexDirection: "column",
+            alignItems: "center", padding:"70px 20px"
+        }}>
+            <Typography component="h1" variant="h4">Профиль</Typography>
+            <Box component="p" sx={{mb:"28px"}}>
+                Платёжные данные обновлены. Теперь вы можете заказывать такси.</Box>
+            <Button component={Link} sx={{ width: "353px" }} to="/order">
+                Перейти на карту</Button>
+        </Box>
     )
-
 }
 
 const mapStateToProps = state => state;

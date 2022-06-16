@@ -8,7 +8,7 @@ import OrderForm from "./OrderForm";
 import Profile from "./Profile";
 
 
-const MapPage = ({ user, pageType }) => {
+const Main = ({ user, pageType }) => {
     // serverRegister("test5455@test.com", '000000')
     return (
         <Box >
@@ -22,7 +22,6 @@ const MapPage = ({ user, pageType }) => {
                             padding: "25px",
                             borderRadius: "10px",
                             pointerEvents: "auto"
-
                         }}>
                         {user.dataCard.cardName ?
                             <OrderForm />
@@ -44,4 +43,4 @@ const MapPage = ({ user, pageType }) => {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(MapPage);
+export default connect(mapStateToProps)(Main);
