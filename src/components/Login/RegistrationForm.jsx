@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Button, Input, InputLabel, FormHelperText, Box, Typography, FormControl, Stack } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Button, Input, InputLabel, FormHelperText, Box, Typography, FormControl, Stack, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { registerAction } from "../../redux/actions";
 
 const RegistrationForm = ({ registerAction }) => {
@@ -25,7 +25,7 @@ const RegistrationForm = ({ registerAction }) => {
         <Box component="form" onSubmit={handleSubmit(logIn)}
             sx={{ display: "grid" }}>
             <Typography component="h1" variant="h4"
-                sx={{ mb: "57px" }}>
+                sx={{ mb: "57px", textAlign:"center" }}>
                 Регистрация</Typography>
             <Stack spacing={3} >
                 <FormControl variant="standard">
@@ -72,10 +72,10 @@ const RegistrationForm = ({ registerAction }) => {
             <Button type="submit" disabled={!isValid}
                 sx={{ mt: "78px", mb: "33px" }}>
                 Зарегистрироваться</Button>
-            <div>
-                Уже зарегистрирован?
-                <Link to="/login" >Войти</Link>
-            </div>
+            <Box sx={{textAlign:"center"}}>
+                Уже зарегистрированы?   
+                <Link component={RouterLink} sx={{color:"#FDBF5A", ml:"5px"}} to="/login" >Войти</Link>
+            </Box>
         </Box>
     )
 }

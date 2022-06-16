@@ -10,7 +10,7 @@ const Profile = () => {
             position: "absolute", bottom: 0, top: "110px",
             display: "flex", justifyContent: "center", alignItems: 'center'
         }}>
-            <Grid item component={Paper} xs={12} sm={6} md={6}
+            <Grid item component={Paper} xs={12} sm={9} md={6}
                 sx={{borderRadius:"10px"}}>
                 <ProfileForm />
             </Grid>

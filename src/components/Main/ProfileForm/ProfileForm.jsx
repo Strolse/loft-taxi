@@ -44,7 +44,7 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
             <Typography component="h1" variant="h4">Профиль</Typography>
             <p>Введите платежные данные</p>
             <Grid container spacing={7}>
-                <Grid item xs={12} sm={6} md={6} sx={{ mb: "40px" }}>
+                <Grid item xs={12} sm={6} md={6} sx={{ mb: "40px", display:'grid' }}>
                     <FormControl variant="standard">
                         <InputLabel htmlFor="name">Имя владельца</InputLabel>
                         <Input {...register('name', {
@@ -138,7 +138,7 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
                 </Grid>
             </Grid>
             <Button type="submit" disabled={!isValid}
-                sx={{ width: "353px" }}>
+                sx={{ width: "353px", mt:"10px" }}>
                 Сохранить</Button>
         </Box>
     ) : (

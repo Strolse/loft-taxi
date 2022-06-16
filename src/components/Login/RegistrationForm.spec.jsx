@@ -22,7 +22,7 @@ describe("RegistrationForm", () => {
       </Provider>
     );
     expect(getByLabelText('Пароль*')).toBeInTheDocument();
-    expect(getByText('Уже зарегистрирован?')).toBeInTheDocument();
+    expect(getByText('Уже зарегистрированы?')).toBeInTheDocument();
   })
 
   describe("with invalid inputs", () => {

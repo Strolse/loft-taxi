@@ -6,7 +6,6 @@ import { serverRegister } from "../../asyncActions/api.js";
 jest.mock("../../asyncActions/api.js");
 
 
-
 describe("regWatcher", () => {
 
     describe("regWorker", () => {

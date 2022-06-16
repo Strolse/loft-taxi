@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Button } from "@mui/material";
 import Header from "./Header";
 import Map from "./Map";
 import OrderForm from "./OrderForm";
@@ -9,7 +9,7 @@ import Profile from "./Profile";
 
 
 const Main = ({ user, pageType }) => {
-    // serverRegister("test5455@test.com", '000000')
+
     return (
         <Box >
             <Header />
@@ -26,12 +26,14 @@ const Main = ({ user, pageType }) => {
                         {user.dataCard.cardName ?
                             <OrderForm />
                             : (
-                                <Box sx={{ display: "grid" }}>
-                                    <Typography component="h1" variant="h5">Заполните платежные данные</Typography>
+                                <Box sx={{ display: "flex", flexDirection:"column", alignItems:"center" }}>
+                                    <Typography component="h1" variant="h5" >
+                                        Заполните платежные данные</Typography>
                                     <p>
                                         Укажите информацию о банковской карте, чтобы сделать заказ.
                                     </p>
-                                    <Link to="/profile" >Перейти в профиль</Link>
+                                    <Button component={Link} sx={{width:"353px"}} to="/profile" >
+                                        Перейти в профиль</Button>
                                 </Box>
                             )}
                     </Grid>

@@ -61,8 +61,9 @@ const OrderForm = ({ order, loadAdressesAction, getRouteAction, emptyCoordsActio
             <Button type="submit" disabled={!isValid}>Заказать</Button>
         </Box>
     ) : (
-        <Box sx={{ display: "grid" }}>
-            <Typography component="h1" variant="h5">Заказ размещен</Typography>
+        <Box sx={{ display: "grid", padding: "10px" }}>
+            <Typography component="h1" variant="h5" sx={{ textAlign: "center" }}>
+                Заказ размещен</Typography>
             <p>
                 Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
             </p>
