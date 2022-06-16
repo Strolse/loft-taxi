@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { Input, Button, InputLabel, Typography, FormGroup, FormHelperText, Box, Stack } from "@mui/material";
+import { Input, Button, InputLabel, Typography, FormGroup, FormControl, FormHelperText, Box, Stack } from "@mui/material";
 import { authenticateAction } from "../../redux/actions";
 
 
@@ -23,14 +23,14 @@ const LoginForm = ({ authenticateAction }) => {
     }
 
     return (
-        <Box component="form" onSubmit={handleSubmit(logIn)}
+        <Box component="form" data-testid="form" onSubmit={handleSubmit(logIn)}
             sx={{ display: "grid" }}>
             <Typography component="h1" variant="h4"
                 sx={{ mb: "57px" }}>
                 Войти</Typography>
             <Stack spacing={3} >
-                <FormGroup>
-                    <InputLabel htmlFor="email">Email</InputLabel>
+                <FormControl variant="standard"  >
+                    <InputLabel htmlFor="email"  shrink>Email</InputLabel>
                     <Input {...register('email', {
                         required: "Введите email",
                         pattern: {
@@ -39,21 +39,23 @@ const LoginForm = ({ authenticateAction }) => {
                         }
                     })}
                         placeholder="mail@mail.ru"
+                        id="email"
                     />
                     <FormHelperText error component="div">
                         {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
                     </FormHelperText>
-                </FormGroup>
-                <FormGroup>
-                    <InputLabel htmlFor="password">Пароль</InputLabel>
+                </FormControl>
+                <FormControl variant="standard" >
+                    <InputLabel shrink htmlFor="password">Пароль</InputLabel>
                     <Input {...register('password', {
                         required: "Введите пароль"
-                    })} type="password" placeholder="*************" id="password"
+                    })} type="password"
+                    placeholder="*************" id="password"
                     />
                     <FormHelperText error component="div">
                         {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
                     </FormHelperText>
-                </FormGroup>
+                </FormControl>
             </Stack>
             <Button type="submit" disabled={!isValid}
                 sx={{ mt: "78px", mb: "33px" }}>

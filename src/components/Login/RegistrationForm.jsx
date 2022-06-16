@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Button, Input, InputLabel, FormHelperText, Box, Typography, FormGroup, Stack } from "@mui/material";
+import { Button, Input, InputLabel, FormHelperText, Box, Typography, FormControl, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import { registerAction } from "../../redux/actions";
 
@@ -28,8 +28,8 @@ const RegistrationForm = ({ registerAction }) => {
                 sx={{ mb: "57px" }}>
                 Регистрация</Typography>
             <Stack spacing={3} >
-                <FormGroup>
-                    <InputLabel htmlFor="email">Email*</InputLabel>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="email" shrink>Email*</InputLabel>
                     <Input {...register('email', {
                         required: "Введите email",
                         pattern: {
@@ -38,33 +38,36 @@ const RegistrationForm = ({ registerAction }) => {
                         }
                     })}
                         placeholder="mail@mail.ru"
+                        id="email"
                     />
                     <FormHelperText error component="div">
                         {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
                     </FormHelperText>
-                </FormGroup>
-                <FormGroup>
-                    <InputLabel htmlFor="name">Как вас зовут?*</InputLabel>
+                </FormControl>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="name" shrink>Как вас зовут?*</InputLabel>
                     <Input {...register('name', {
                         required: "Введите имя"
                     })}
                         placeholder="Петр Александрович"
+                        id="name"
                     />
                     <FormHelperText error component="div">
                         {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
                     </FormHelperText>
-                </FormGroup>
-                <FormGroup>
-                    <InputLabel htmlFor="password">Пароль</InputLabel>
+                </FormControl>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="password" shrink>Пароль*</InputLabel>
                     <Input {...register('password', {
-                        required: "Введите пароль"
+                        required: "Придумайте пароль"
                     })}
                         type="password" placeholder="Придумайте пароль*"
+                        id="password"
                     />
                     <FormHelperText error component="div">
                         {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
                     </FormHelperText>
-                </FormGroup>
+                </FormControl>
             </Stack>
             <Button type="submit" disabled={!isValid}
                 sx={{ mt: "78px", mb: "33px" }}>

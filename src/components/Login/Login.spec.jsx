@@ -5,9 +5,14 @@ import { render } from "@testing-library/react"
 import Login from "./Login";
 
 
-jest.mock("./Registration", () => {
-  const Registration = () => <div>Registration component</div>
-  return Registration
+jest.mock("./RegistrationForm", () => {
+  const RegistrationForm = () => <div>RegistrationForm component</div>
+  return RegistrationForm
+});
+
+jest.mock("./LoginForm", () => {
+  const LoginForm = () => <div>LoginForm component</div>
+  return LoginForm
 });
 
 const mockStore = {
@@ -18,18 +23,25 @@ const mockStore = {
 
 describe("Login", () => {
 
-  it("renders correctly", () => {
-
-    const { container, getByText } = render(
+  it("renders correctly, when opens registration", () => {
+    const { getByText } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <Login />
+        <Login formType="registration" />
         </MemoryRouter>
       </Provider>
     );
-
-    expect(getByText('Пароль')).toBeInTheDocument();
-    expect(container.innerHTML).toMatch('Войти');
+    expect(getByText('RegistrationForm component')).toBeInTheDocument();
   })
 
+  it("renders correctly, when opens login", () => {
+    const { getByText } = render(
+      <Provider store={mockStore}>
+        <MemoryRouter>
+        <Login formType="login" />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(getByText('LoginForm component')).toBeInTheDocument();
+  })
 })
