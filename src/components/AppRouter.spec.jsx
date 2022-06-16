@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import AppRouter from "./AppRouter";
@@ -9,26 +9,16 @@ const mockStore = {
     dispatch: () => { }
 }
 
-jest.mock("./Login", ()=>{
+jest.mock("./Login/Login.jsx", ()=>{
     const Login = ()=><div>Login component</div>
     return Login
 });
 
-jest.mock("./Registration", ()=>{
-    const Registration = ()=><div>Registration component</div>
-    return Registration
-});
-
-jest.mock("./Profile", ()=>{
-    const Profile = ()=><div>Profile component</div>
-    return Profile
-});
-
-jest.mock("./Main", ()=>{
+jest.mock("./Main/Main.jsx", ()=>{
     const Main = ()=><div>Main component</div>
     return Main
 });
-
+ 
 describe("AppRouter", () => {
     it("renders correctly", () => {
         const {container} = render(
@@ -49,7 +39,7 @@ describe("AppRouter", () => {
                 </MemoryRouter>
             </Provider>
         );
-        expect(container.innerHTML).toMatch("Registration component");
+        expect(container.innerHTML).toMatch("Login component");
     })
 
     it("renders correctly with Profile component", () => {
@@ -60,18 +50,17 @@ describe("AppRouter", () => {
                 </MemoryRouter>
             </Provider>
         );
-        expect(container.innerHTML).toMatch("Profile component");
+        expect(container.innerHTML).toMatch("Main component");
     })
 
     it("renders correctly with Main component", () => {
         const {container} = render(
             <Provider store={mockStore}>
-                <MemoryRouter initialEntries={['/map']}>
+                <MemoryRouter initialEntries={['/order']}>
                     <AppRouter />
                 </MemoryRouter>
             </Provider>
         );
         expect(container.innerHTML).toMatch("Main component");
     })
-
 })

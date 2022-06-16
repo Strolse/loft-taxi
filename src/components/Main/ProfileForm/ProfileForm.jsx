@@ -2,7 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { Input, Button, InputLabel, Card, Typography, Grid, Stack, FormHelperText, Box, FormGroup, CardMedia } from "@mui/material";
+import {
+    Input, Button, InputLabel, Card, Typography, Grid, Stack,
+    FormHelperText, Box, FormControl, CardMedia
+} from "@mui/material";
 import { saveCardAction } from "../../../redux/actions";
 import cardLogo from "./card-logo.png"
 import cardSign from "./card-sign.png"
@@ -32,7 +35,8 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
     }
 
     return !isSubmitted ? (
-        <Box component="form" onSubmit={handleSubmit(saveCard)}
+        <Box component="form" data-testid="form"
+            onSubmit={handleSubmit(saveCard)}
             sx={{
                 display: "flex", flexDirection: "column",
                 alignItems: "center", padding: "44px 5%"
@@ -41,17 +45,18 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
             <p>Введите платежные данные</p>
             <Grid container spacing={7}>
                 <Grid item xs={12} sm={6} md={6} sx={{ mb: "40px" }}>
-                    <FormGroup>
+                    <FormControl variant="standard">
                         <InputLabel htmlFor="name">Имя владельца</InputLabel>
                         <Input {...register('name', {
                             required: "Введите имя"
                         })}
-                            placeholder="Loft" />
+                            placeholder="Loft"
+                            id="name" />
                         <FormHelperText error component="div">
                             {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
                         </FormHelperText>
-                    </FormGroup>
-                    <FormGroup>
+                    </FormControl>
+                    <FormControl variant="standard">
                         <InputLabel htmlFor="card">Номер карты</InputLabel>
                         <Input {...register('card', {
                             required: "Введите номер карты",
@@ -64,34 +69,37 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
                                 message: "В номере карты 16 цифр"
                             }
                         })}
-                            type="number" placeholder="5545  2300  3432  4521" />
+                            type="number" placeholder="5545  2300  3432  4521"
+                            id="card" />
                         <FormHelperText error component="div">
                             {errors?.card && <p>{errors?.card?.message || "Error!"}</p>}
                         </FormHelperText>
-                    </FormGroup>
+                    </FormControl>
                     <Stack direction="row" spacing={3}>
-                        <FormGroup>
+                        <FormControl variant="standard">
                             <InputLabel htmlFor="date">MM/YY</InputLabel>
                             <Input
                                 {...register('date', {
                                     required: "Введите дату"
                                 })}
                                 placeholder="05/08"
+                                id="date"
                             />
                             <FormHelperText error component="div">
                                 {errors?.date && <p>{errors?.date?.message || "Error!"}</p>}
                             </FormHelperText>
-                        </FormGroup>
-                        <FormGroup>
+                        </FormControl>
+                        <FormControl variant="standard">
                             <InputLabel htmlFor="cvc">CVC</InputLabel>
                             <Input {...register('cvc', {
                                 required: "Введите cvc"
                             })}
-                                type="text" placeholder="667" name="cvc" required id="cvc" />
+                                type="text" placeholder="667" name="cvc" required 
+                                id="cvc" />
                             <FormHelperText error component="div">
                                 {errors?.cvc && <p>{errors?.cvc?.message || "Error!"}</p>}
                             </FormHelperText>
-                        </FormGroup>
+                        </FormControl>
                     </Stack>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6}
@@ -136,10 +144,10 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
     ) : (
         <Box sx={{
             display: "flex", flexDirection: "column",
-            alignItems: "center", padding:"70px 20px"
+            alignItems: "center", padding: "70px 20px"
         }}>
             <Typography component="h1" variant="h4">Профиль</Typography>
-            <Box component="p" sx={{mb:"28px"}}>
+            <Box component="p" sx={{ mb: "28px" }}>
                 Платёжные данные обновлены. Теперь вы можете заказывать такси.</Box>
             <Button component={Link} sx={{ width: "353px" }} to="/order">
                 Перейти на карту</Button>

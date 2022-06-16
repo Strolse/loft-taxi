@@ -1,7 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Grid, Paper } from "@mui/material";
-import { saveCardAction } from "../../redux/actions";
 import ProfileForm from "./ProfileForm/ProfileForm";
 
 const Profile = () => {
@@ -19,6 +17,4 @@ const Profile = () => {
         </Grid>)
 }
 
-const mapStateToProps = state => state;
-
-export default connect(mapStateToProps, { saveCardAction })(Profile);
+export default Profile;

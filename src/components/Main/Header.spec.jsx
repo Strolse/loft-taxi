@@ -12,7 +12,7 @@ const mockStore = {
 describe("Header", () => {
 
   it("renders correctly", () => {
-    const { container, getByText } = render(
+    const { getByText } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
           <Header />

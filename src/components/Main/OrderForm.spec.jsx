@@ -5,24 +5,18 @@ import { render } from "@testing-library/react";
 import configureStore from 'redux-mock-store';
 import OrderForm from "./OrderForm";
 
-
 const middlewares = [];
 const mockStore = configureStore(middlewares);
-const initialState = {
-    user: {
-        dataCard: {
-            cardNumber: "",
-            expiryDate: "",
-            cardName: "",
-            cvc: ""
-        }
-    }
-};
-const store = mockStore(initialState);
 
 describe("OrderForm", () => {
-
-  it("renders correctly", () => {
+  it("renders correctly, when an order is not implemented", () => {
+    const initialState = {
+      order: {
+        isOrdered: false,
+        addresses: [1, 2]
+      }
+    };
+    const store = mockStore(initialState);
 
     const { queryByText, getByText } = render(
       <Provider store={store}>
@@ -32,8 +26,28 @@ describe("OrderForm", () => {
       </Provider>
     );
 
-    expect(getByText('Заполните платежные данные')).toBeInTheDocument();
-    expect(queryByText('Заказать')).not.toBeInTheDocument();
+    expect(getByText('Заказать')).toBeInTheDocument();
+    expect(queryByText('Сделать новый заказ')).not.toBeInTheDocument();
   })
 
+  it("renders correctly, when an order is implemented", () => {
+    const initialState = {
+      order: {
+        isOrdered: true,
+        addresses: [1, 2]
+      }
+    };
+    const store = mockStore(initialState);
+
+    const { queryByText, getByText } = render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <OrderForm />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    expect(queryByText('Заказать')).not.toBeInTheDocument();
+    expect(getByText('Сделать новый заказ')).toBeInTheDocument();
+  })
 })

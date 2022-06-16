@@ -1,27 +1,11 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { render } from "@testing-library/react"
 import Profile from "./Profile";
-import configureStore from 'redux-mock-store'
 
 
-const middlewares = [];
-const mockStore = configureStore(middlewares);
-const initialState = {
-    user: {
-        dataCard: {
-            cardNumber: "",
-            expiryDate: "",
-            cardName: "",
-            cvc: ""
-        }
-    }
-};
-const store = mockStore(initialState);
-
-jest.mock("./Header", () => {
-    const Header = () => <div>Header component</div>
-    return Header
+jest.mock("./ProfileForm/ProfileForm.jsx", () => {
+    const ProfileForm = () => <div>ProfileForm component</div>
+    return ProfileForm
 });
 
 describe("Profile component", () => {
@@ -29,11 +13,9 @@ describe("Profile component", () => {
     it("renders correctly", () => {
 
         const { container } = render(
-            <Provider store={store}>
-                <Profile />
-            </Provider>
+            <Profile />
         );
-        expect(container.innerHTML).toMatch("Header component")
+        expect(container.innerHTML).toMatch("ProfileForm component")
     }
     )
 })

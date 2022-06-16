@@ -30,7 +30,7 @@ const OrderForm = ({ order, loadAdressesAction, getRouteAction, emptyCoordsActio
 
     return !order.isOrdered ? (
         <Box component="form" onSubmit={handleSubmit(onSubmit)}
-            sx={{ display: "grid" }}>
+            sx={{ display: "grid" }} data-testid="form">
             <Controller
                 control={control}
                 name="selectedFrom"
