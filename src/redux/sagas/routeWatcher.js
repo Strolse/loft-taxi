@@ -9,7 +9,7 @@ export function* routeWorker(action) {
     const coordinates = yield call(
         serverRoute, 
         from, to);
-        console.log(from)
+
     yield put(coordsAction(coordinates));
     
 }

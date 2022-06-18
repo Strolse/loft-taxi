@@ -58,7 +58,7 @@ describe("Main component", () => {
             user: {
                 dataCard: {
                     cardNumber: "",
-                    expiryDate: "",
+                    expiryDate: "08/22",
                     cardName: "Olya",
                     cvc: ""
                 }

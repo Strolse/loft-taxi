@@ -23,7 +23,7 @@ const Main = ({ user, pageType }) => {
                             borderRadius: "10px",
                             pointerEvents: "auto"
                         }}>
-                        {user.dataCard.cardName ?
+                        {user.dataCard.cardName && user.dataCard.expiryDate ?
                             <OrderForm />
                             : (
                                 <Box sx={{ display: "flex", flexDirection:"column", alignItems:"center" }}>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Grid, Paper } from "@mui/material";
 import ProfileForm from "./ProfileForm/ProfileForm";
 
-const Profile = () => {
 
+
+const Profile = () => {
     return (
         <Grid container sx={{
             background: 'linear-gradient(0deg, rgba(28, 26, 25, 0.5), rgba(28, 26, 25, 0.5))',
@@ -11,7 +12,7 @@ const Profile = () => {
             display: "flex", justifyContent: "center", alignItems: 'center'
         }}>
             <Grid item component={Paper} xs={12} sm={9} md={6}
-                sx={{borderRadius:"10px"}}>
+                sx={{ borderRadius: "10px" }}>
                 <ProfileForm />
             </Grid>
         </Grid>)
