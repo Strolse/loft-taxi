@@ -1,6 +1,5 @@
 import {LOG_IN, LOG_OUT} from "../actions"
 
-
 const defaultState = {
     isLoggedIn: false
 }
@@ -15,8 +14,7 @@ export default function(state = defaultState, action){
 
         default:
             return state
-    }
-    
+    }    
 }
 
 

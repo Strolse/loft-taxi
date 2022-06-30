@@ -1,4 +1,4 @@
-import { takeEvery, call, put, all, fork } from 'redux-saga/effects';
+import { all, fork } from 'redux-saga/effects';
 import { authWatcher } from './authWatcher';
 import { paymentWatcher } from './paymentWatcher';
 import { addressListWatcher } from './addressListWatcher';

@@ -1,4 +1,4 @@
-import { ADDRESS_LIST, COORDS } from "../actions"
+import { ADDRESS_LIST, COORDS, EMPTY_COORDS } from "../actions"
 
 
 const defaultState = {
@@ -14,6 +14,9 @@ export default function (state = defaultState, action) {
         
         case COORDS:
             return {...state, coords: action.payload, isOrdered: true}
+
+        case EMPTY_COORDS:
+            return {...state, coords: [], isOrdered: false}
 
         default:
             return state

@@ -1,28 +1,26 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { render } from "@testing-library/react";
-import Registration from "./Registration";
-
+import Header from "./Header";
+import { render } from "@testing-library/react"
 
 const mockStore = {
-  getState: () => ({ auth: {} }),
+  getState: () => { },
   subscribe: () => { },
   dispatch: () => { }
 }
-
-describe("Registration", () => {
+describe("Header", () => {
 
   it("renders correctly", () => {
     const { getByText } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <Registration />
+          <Header />
         </MemoryRouter>
       </Provider>
-    );
-    expect(getByText('Пароль')).toBeInTheDocument();
-    expect(getByText('Регистрация')).toBeInTheDocument();
+    )
+    expect(getByText('Карта')).toBeInTheDocument();
+    expect(getByText('Профиль')).toBeInTheDocument();
   })
 })
 

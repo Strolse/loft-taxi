@@ -14,7 +14,7 @@ describe("paymentWatcher", () => {
 
             serverSendCard.mockImplementation(() => true);
             const cardNumber = "test";
-            const expiryDate = "test";
+            const expiryDate = new Date();
             const cardName = "test";
             const cvc = "test";
             const token = "test";

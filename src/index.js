@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { theme } from "loft-taxi-mui-theme";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter } from "react-router-dom";
-import {Provider} from "react-redux";
-
+import { Provider } from "react-redux";
 import { store } from './redux/store/store';
+import theme from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,9 +17,9 @@ root.render(
   <React.StrictMode >
     <BrowserRouter>
       <Provider store={store}>
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <App />
-        </MuiThemeProvider>
+        </ThemeProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
