@@ -22,7 +22,7 @@ const Header = ({ logoutAction }) => {
                         <Link component={RouterLink} to="/order">Карта</Link>
                         <Link component={RouterLink} to="/profile" >Профиль</Link>
                         <Link component={RouterLink} to="/login"
-                            onClick={() => { logoutAction(); localStorage.clear() }}>
+                            onClick={() => { logoutAction(); localStorage.clear(); this.location.reload() }}>
                             Выйти</Link>
                     </Stack>
                 </Toolbar>

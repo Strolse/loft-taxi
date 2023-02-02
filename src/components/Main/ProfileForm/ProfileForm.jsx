@@ -146,7 +146,7 @@ const ProfileForm = ({ auth, user, saveCardAction }) => {
                                 component='p'>
                                 {watch('date') !== null && moment(new Date(watch('date'))).format('MM/YY')
                                     || <FormHelperText error component="div">
-                                        Поле MM/YY не запонено
+                                        Поле MM/YY не заполнено
                                     </FormHelperText>}
                             </Typography>
                         </Box>
