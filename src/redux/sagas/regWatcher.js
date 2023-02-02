@@ -8,10 +8,10 @@ export function* regWorker(action) {
   const { success, token } = yield call(serverRegister, email, password, name, surname);
   if (success) {
     yield put(loginAction(token));
+  } else {
+    alert('Пользователь с указанной почтой уже существует')
   }
 }
 export function* regWatcher() {
-
   yield takeEvery(REGISTER, regWorker)
-
 }

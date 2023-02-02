@@ -7,13 +7,16 @@ import logo from "./logo.png"
 import bg from "./bg.jpg"
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
+import { useEffect } from "react";
 
 const Login = ({ isLoggedIn, formType }) => {
     let navigate = useNavigate();
 
-    if (isLoggedIn) {
-        navigate("/order");
-    }
+    useEffect(()=> {
+        if (isLoggedIn) {
+            navigate("/order");
+    } 
+    }, [isLoggedIn, navigate]);
 
     return (
         <Grid container component="main" sx={{ height: "100vh" }}>

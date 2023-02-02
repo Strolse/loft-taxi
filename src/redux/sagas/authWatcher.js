@@ -10,6 +10,8 @@ export function* authWorker(action) {
     yield put(loginAction(token));
     const {cardNumber, expiryDate, cardName, cvc, id} = yield serverGetCard(token);
     yield put(dataCardAction(cardNumber, expiryDate, cardName, cvc, id));
+  } else {
+    alert ("Неправильная почта или пароль")
   }
 }
 

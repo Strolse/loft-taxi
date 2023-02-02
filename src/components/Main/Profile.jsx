@@ -1,8 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import { Grid, Paper } from "@mui/material";
 import ProfileForm from "./ProfileForm/ProfileForm";
-
-
 
 const Profile = () => {
     return (
